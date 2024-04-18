@@ -38,15 +38,15 @@ export default function Home() {
         </div>
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-40">
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Plan your travel for Japan
+            <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl">
+              Template for your SAAS business
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">Flyosophy makes global travel effortless. Find your perfect trip with personalized itineraries and seamless booking options, all in one place.
+            <p className="mt-6 text-lg leading-8 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et tellus lacus. Morbi quis lacus id odio elementum interdum vel.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
                 href="#"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="rounded-md bg-black px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-black/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Get started
               </a>
@@ -61,8 +61,8 @@ export default function Home() {
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             <div className="lg:pr-8 lg:pt-4">
               <div className="lg:max-w-lg">
-                <h2 className="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2>
-                <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">A better workflow</p>
+                <h2 className="text-base font-semibold leading-7 text-black">Deploy faster</h2>
+                <p className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-4xl">A better workflow</p>
                 <p className="mt-6 text-lg leading-8 text-gray-600">
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque,
                   iste dolor cupiditate blanditiis ratione.
@@ -70,7 +70,7 @@ export default function Home() {
                 <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
                   {features.map((feature) => (
                     <div key={feature.name} className="relative pl-9">
-                      <dt className="inline font-semibold text-gray-900">
+                      <dt className="inline font-semibold text-black">
                         {/* <feature.icon className="absolute left-1 top-1 h-5 w-5 text-indigo-600" aria-hidden="true" /> */}
                         {feature.name}
                       </dt>{' '}
@@ -98,7 +98,7 @@ export default function Home() {
             {stats.map((stat) => (
               <div key={stat.id} className="mx-auto flex max-w-xs flex-col gap-y-4">
                 <dt className="text-base leading-7 text-gray-600">{stat.name}</dt>
-                <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                <dd className="order-first text-3xl font-semibold tracking-tight text-black sm:text-5xl">
                   {stat.value}
                 </dd>
               </div>

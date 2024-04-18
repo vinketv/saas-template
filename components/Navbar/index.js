@@ -19,7 +19,7 @@ export const Navbar = async() => {
                                 height={32}
                                 quality={100}
                             ></Image>
-                            <p className="font-medium ml-1 text-gray-900">Flyosophy</p>
+                            <p className="font-medium ml-1 text-black">Template</p>
                         </Link>
                         <div>
                             {

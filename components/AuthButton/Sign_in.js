@@ -18,7 +18,7 @@ export async function SignIn() {
         await signIn("google")
       }}
     >
-      <button className="rounded-full border border-indigo-600 bg-indigo-600 p-1.5 px-4 text-sm shadow-sm font-semibold text-white transition-all hover:bg-white hover:text-indigo-600">Sign in</button>
+      <button className="rounded-full border border-black bg-black p-1.5 px-4 text-sm shadow-sm font-semibold text-white transition-all hover:bg-white hover:text-black">Sign in</button>
     </form>
   )
 }

@@ -34,8 +34,8 @@ export default function Cookies() {
                     </div>
                     <div className="border-b-2 border-slate-200 w-1/2 m-auto"></div>
                     <div className="flex flex-row gap-4 justify-center my-5">
-                        <button onClick={handleDecline} className="p-2 cursor-pointer bg-indigo-100 rounded-md px-3.5 py-2.5 text-sm font-semibold text-indigo-600">decline</button>
-                        <button onClick={handleAccept} className="p-2 cursor-pointer bg-indigo-600 rounded-md px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-500">Agree</button>
+                        <button onClick={handleDecline} className="p-2 cursor-pointer bg-indigo-100 rounded-md px-3.5 py-2.5 text-sm font-semibold text-black">decline</button>
+                        <button onClick={handleAccept} className="p-2 cursor-pointer bg-black rounded-md px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-black/75">Agree</button>
                     </div>
                 </div>
             </div>

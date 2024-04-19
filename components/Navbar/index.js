@@ -19,7 +19,7 @@ export const Navbar = async () => {
                 quality={100}
                 alt="logo"
               ></Image>
-              <p className="font-medium ml-1 text-black">Template</p>
+              <p className="font-medium ml-1 text-primary">Template</p>
             </Link>
             <div>
               {!session?.user ? <SignIn /> : <UserAvatar session={session} />}

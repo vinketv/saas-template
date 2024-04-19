@@ -19,7 +19,7 @@ export async function SignIn() {
       <button
         value="Sign in"
         aria-label="Sign in"
-        className="rounded-full border border-black bg-black p-1.5 px-4 text-sm shadow-sm font-semibold text-white transition-all hover:bg-white hover:text-black"
+        className="rounded-full border border-primary bg-primary p-1.5 px-4 text-sm shadow-sm font-semibold text-white transition-all hover:bg-white hover:text-primary"
       >
         Sign in
       </button>

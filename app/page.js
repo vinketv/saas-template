@@ -8,20 +8,22 @@ export default function Home() {
       description:
         "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
       icon: (
-        <FaCloudUploadAlt className="absolute left-1 top-1 h-5 w-5 text-black" />
+        <FaCloudUploadAlt className="absolute left-1 top-1 h-5 w-5 text-primary" />
       ),
     },
     {
       name: "SSL certificates.",
       description:
         "Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.",
-      icon: <FaDatabase className="absolute left-1 top-1 h-5 w-5 text-black" />,
+      icon: (
+        <FaDatabase className="absolute left-1 top-1 h-5 w-5 text-primary" />
+      ),
     },
     {
       name: "Database backups.",
       description:
         "Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.",
-      icon: <FaLock className="absolute left-1 top-1 h-5 w-5 text-black" />,
+      icon: <FaLock className="absolute left-1 top-1 h-5 w-5 text-primary" />,
     },
   ];
 
@@ -50,7 +52,7 @@ export default function Home() {
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
                 href="#"
-                className="rounded-md bg-black px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-black/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
                 Get started
               </a>
@@ -65,7 +67,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             <div className="lg:pr-8 lg:pt-4">
               <div className="lg:max-w-lg">
-                <h2 className="text-base font-semibold leading-7 text-black">
+                <h2 className="text-base font-semibold leading-7 text-primary">
                   Deploy faster
                 </h2>
                 <p className="mt-2 text-3xl font-bold tracking-tight text-black sm:text-4xl">

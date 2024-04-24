@@ -32,18 +32,14 @@ export default function Cookies() {
 
   return (
     <>
-      <div className="fixed bottom-4 right-4 w-3/4 h-auto md:w-1/2 xl:w-1/4 rounded shadow-2xl bg-white">
+      <div className="fixed bottom-0 right-0 md:bottom-4 md:right-4  h-auto md:w-1/2 xl:w-1/4 rounded shadow-2xl bg-white">
         <div className="flex flex-col justify-center text-center">
           <div className="m-7">
             <h4 className="text-primary text-lg font-semibold">Cookies</h4>
             <p className="text-sm">
-              This website uses cookies to ensure you get the best experience on
-              our platform. Cookies help us personalize content, provide social
-              media features, and analyze our traffic. We also share information
-              about your use of our site with our social media, advertising, and
-              analytics partners who may combine it with other information that
-              you’ve provided to them or that they’ve collected from your use of
-              their services.
+              This website uses cookies in order to offer you the most relevant
+              information. Please accept cookies for optimal performance. Read
+              our privacy policy.
             </p>
           </div>
           <div className="border-b-2 border-slate-200 w-1/2 m-auto"></div>

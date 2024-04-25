@@ -1,11 +1,8 @@
-import { auth } from "@/auth.js";
-import { SignIn, UserAvatar } from "@/components/AuthButton/Sign_in";
+import { Avatar } from "@/components/AuthButton/Sign_in";
 import Image from "next/image";
 import Link from "next/link";
 
 export const Navbar = async () => {
-  const session = await auth();
-
   return (
     <>
       <header className="w-full">
@@ -21,9 +18,7 @@ export const Navbar = async () => {
               ></Image>
               <p className="font-medium ml-1 text-black">Template</p>
             </Link>
-            <div>
-              {!session?.user ? <SignIn /> : <UserAvatar session={session} />}
-            </div>
+            <Avatar></Avatar>
           </div>
         </div>
       </header>

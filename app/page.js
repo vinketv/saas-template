@@ -3,7 +3,7 @@ import { Navbar } from "@/components/Navbar";
 import { Princing } from "@/components/Pricing";
 import { FaCloudUploadAlt, FaDatabase, FaLock } from "react-icons/fa";
 
-export default function Home() {
+export default function Page() {
   const features = [
     {
       name: "Push to deploy.",

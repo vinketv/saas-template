@@ -1,4 +1,4 @@
-import { signIn, signOut } from "@/auth.js";
+import { auth, signIn, signOut } from "@/auth.js";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -48,7 +48,12 @@ export function UserAvatar({ session }) {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link href="/dashboard" className="cursor-pointer">
+            <Link href="/home" className="cursor-pointer">
+              Home
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href="/home" className="cursor-pointer">
               Profile
             </Link>
           </DropdownMenuItem>
@@ -66,6 +71,17 @@ export function UserAvatar({ session }) {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+    </>
+  );
+}
+
+export async function Avatar() {
+  const session = await auth();
+  return (
+    <>
+      <div>
+        {!session?.user ? <SignIn /> : <UserAvatar session={session} />}
+      </div>
     </>
   );
 }

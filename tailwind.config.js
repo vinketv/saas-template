@@ -34,6 +34,7 @@ module.exports = {
       colors: {
         primary: {
           DEFAULT: "#000000", // Remplacez ceci par la couleur hexadécimale de votre choix
+          // DEFAULT: "#4f46e5", // Indigo 600
           light: "#7f8ed4", // Une nuance plus claire de votre couleur primaire
           dark: "#404895", // Une nuance plus foncée de votre couleur primaire
         },

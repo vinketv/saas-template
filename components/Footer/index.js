@@ -39,7 +39,7 @@ export const Footer = () => {
               <li className="text-slate-500 hover:text-primary">
                 <Link href="/">List your business</Link>
               </li>
-              <li className="text-slate-500 hover:text-black">
+              <li className="text-slate-500 hover:text-primary">
                 <Link href="/">Support & FAQ</Link>
               </li>
             </ul>

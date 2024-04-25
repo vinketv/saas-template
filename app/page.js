@@ -1,4 +1,5 @@
 import { Footer } from "@/components/Footer";
+import { Princing } from "@/components/Pricing";
 import { FaCloudUploadAlt, FaDatabase, FaLock } from "react-icons/fa";
 
 export default function Home() {
@@ -124,6 +125,7 @@ export default function Home() {
           </dl>
         </div>
       </div>
+      <Princing></Princing>
       <Footer></Footer>
     </>
   );

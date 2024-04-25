@@ -1,4 +1,5 @@
 import { Footer } from "@/components/Footer";
+import { Navbar } from "@/components/Navbar";
 import { Princing } from "@/components/Pricing";
 import { FaCloudUploadAlt, FaDatabase, FaLock } from "react-icons/fa";
 
@@ -36,6 +37,7 @@ export default function Home() {
 
   return (
     <>
+      <Navbar></Navbar>
       <div className="relative isolate px-6 py-16 lg:px-8 lg:py-32">
         <div
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"

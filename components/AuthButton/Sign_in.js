@@ -7,6 +7,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
 
 export async function SignIn() {
   return (
@@ -47,9 +48,9 @@ export function UserAvatar({ session }) {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <a className="cursor-pointer" aria-label="Profile">
+            <Link href="/dashboard" className="cursor-pointer">
               Profile
-            </a>
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <form

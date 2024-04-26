@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
-
 const providers = [Google];
 
 export const providerMap = providers.map((provider) => {

@@ -1,13 +1,13 @@
 "use client";
 
 import {
-  FaBars,
-  FaChartBar,
-  FaCommentAlt,
-  FaShoppingCart,
-  FaThList,
-  FaUser,
-} from "react-icons/fa";
+  BarChart3,
+  LayoutDashboard,
+  Mailbox,
+  Menu,
+  ShoppingBasket,
+  User,
+} from "lucide-react";
 import { useDrawer } from "./toggle";
 
 export default function ToggleButton() {
@@ -21,7 +21,7 @@ export default function ToggleButton() {
         className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
       >
         <span className="sr-only">Open sidebar</span>
-        <FaBars />
+        <Menu />
       </button>
     </>
   );
@@ -34,27 +34,27 @@ export function SideBar() {
     {
       name: "Dashboard",
       href: "/dashboard",
-      icon: <FaThList />,
+      icon: <LayoutDashboard />,
     },
     {
       name: "Kanban",
       href: "/dashboard",
-      icon: <FaChartBar />,
+      icon: <BarChart3 />,
     },
     {
       name: "Inbox",
       href: "/dashboard",
-      icon: <FaCommentAlt />,
+      icon: <Mailbox />,
     },
     {
       name: "Users",
       href: "/dashboard",
-      icon: <FaUser />,
+      icon: <User />,
     },
     {
       name: "Products",
       href: "/dashboard",
-      icon: <FaShoppingCart />,
+      icon: <ShoppingBasket />,
     },
   ];
 

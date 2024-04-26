@@ -1,4 +1,4 @@
-import { Avatar } from "@/components/AuthButton/Sign_in";
+import { Avatar } from "@/components/Auth/Button";
 import Image from "next/image";
 import Link from "next/link";
 

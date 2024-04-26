@@ -1,7 +1,7 @@
 import ToggleButton, { SideBar } from "@/components/SideBar/index";
 import Image from "next/image";
 import Link from "next/link";
-import { Avatar } from "../AuthButton/Sign_in";
+import { Avatar } from "../Auth/Button";
 
 export const NavDashboard = () => {
   // const spanPro = (

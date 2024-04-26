@@ -32,23 +32,28 @@ export function SideBar() {
 
   const menuList = [
     {
-      name: "Home",
+      name: "Dashboard",
+      href: "/dashboard",
       icon: <FaThList />,
     },
     {
       name: "Kanban",
+      href: "/dashboard",
       icon: <FaChartBar />,
     },
     {
       name: "Inbox",
+      href: "/dashboard",
       icon: <FaCommentAlt />,
     },
     {
       name: "Users",
+      href: "/dashboard",
       icon: <FaUser />,
     },
     {
       name: "Products",
+      href: "/dashboard",
       icon: <FaShoppingCart />,
     },
   ];
@@ -67,7 +72,7 @@ export function SideBar() {
             {menuList.map((feature, id) => (
               <li key={id}>
                 <a
-                  href="#"
+                  href={feature.href}
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
                   {feature.icon}

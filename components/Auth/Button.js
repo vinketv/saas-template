@@ -1,4 +1,4 @@
-import { auth, signIn, signOut } from "@/auth.js";
+import { auth, signOut } from "@/auth.js";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,25 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-
-export async function SignIn() {
-  return (
-    <form
-      action={async () => {
-        "use server";
-        await signIn("google", { redirectTo: "/home" });
-      }}
-    >
-      <button
-        value="Sign in"
-        aria-label="Sign in"
-        className="rounded-full border border-primary bg-primary p-1.5 px-4 text-sm shadow-sm font-semibold text-white transition-all hover:bg-white hover:text-primary"
-      >
-        Sign in
-      </button>
-    </form>
-  );
-}
+import { SignInButton } from "./Sign-in";
 
 export function UserAvatar({ session }) {
   return (
@@ -48,20 +30,15 @@ export function UserAvatar({ session }) {
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link href="/home" className="cursor-pointer">
-              Home
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href="/home" className="cursor-pointer">
-              Profile
+            <Link href="/dashboard" className="cursor-pointer">
+              Dashboard
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <form
               action={async () => {
                 "use server";
-                await signOut();
+                await signOut({ redirectTo: "/" });
               }}
             >
               <button aria-label="Sign out" type="submit">
@@ -80,7 +57,7 @@ export async function Avatar() {
   return (
     <>
       <div>
-        {!session?.user ? <SignIn /> : <UserAvatar session={session} />}
+        {!session?.user ? <SignInButton /> : <UserAvatar session={session} />}
       </div>
     </>
   );

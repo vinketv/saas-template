@@ -6,7 +6,7 @@ import Image from "next/image";
 export default async function SignInPage() {
   return (
     <div className="h-screen w-screen flex justify-center items-center bg-slate-100">
-      <div className="flex flex-col sm:shadow-xl px-8 py-8 bg-white rounded-xl space-y-8 justify-items-center items-center w-4/5 sm:w-3/4 lg:w-2/4 xl:w-1/4">
+      <div className="flex flex-col sm:shadow-xl px-8 py-8 bg-white rounded-xl space-y-8 justify-items-center items-center w-4/5 sm:w-3/4 lg:w-2/4 xl:w-4/12 2xl:w-1/4">
         <Image src="/icon.png" width={64} height={64}></Image>
         <div className="border-slate-300 border w-full md:w-3/4"></div>
         <form className="w-full md:w-3/4">

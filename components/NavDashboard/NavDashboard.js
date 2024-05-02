@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Avatar } from "../Auth/Button";
 
-export const NavDashboard = () => {
+export const NavDashboard = ({ role }) => {
   // const spanPro = (
   //   <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">
   //     Pro
@@ -48,7 +48,7 @@ export const NavDashboard = () => {
         </div>
       </nav>
 
-      <SideBar></SideBar>
+      <SideBar role={role}></SideBar>
     </>
   );
 };

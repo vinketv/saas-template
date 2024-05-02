@@ -6,8 +6,10 @@ import {
   Mailbox,
   Menu,
   ShoppingBasket,
+  Tag,
   User,
 } from "lucide-react";
+import Link from "next/link";
 import { useDrawer } from "./toggle";
 
 export default function ToggleButton() {
@@ -27,17 +29,17 @@ export default function ToggleButton() {
   );
 }
 
-export function SideBar() {
+export function SideBar({ role }) {
   const { isDrawerOpen } = useDrawer();
 
-  const menuList = [
+  let menuList = [
     {
       name: "Dashboard",
       href: "/dashboard",
       icon: <LayoutDashboard />,
     },
     {
-      name: "Kanban",
+      name: "Analytics",
       href: "/dashboard",
       icon: <BarChart3 />,
     },
@@ -47,16 +49,28 @@ export function SideBar() {
       icon: <Mailbox />,
     },
     {
-      name: "Users",
-      href: "/dashboard",
-      icon: <User />,
-    },
-    {
       name: "Products",
       href: "/dashboard",
       icon: <ShoppingBasket />,
     },
   ];
+
+  // Conditionally add items based on role
+  if (role === "admin") {
+    menuList = [
+      ...menuList,
+      {
+        name: "Users",
+        href: "/dashboard/users",
+        icon: <User />,
+      },
+      {
+        name: "Tickets",
+        href: "/dashboard/tickets",
+        icon: <Tag />,
+      },
+    ];
+  }
 
   return (
     <>
@@ -71,13 +85,13 @@ export function SideBar() {
           <ul className="space-y-2 font-medium">
             {menuList.map((feature, id) => (
               <li key={id}>
-                <a
+                <Link
                   href={feature.href}
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
                   {feature.icon}
                   <span className="ms-3">{feature.name}</span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

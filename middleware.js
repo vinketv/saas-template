@@ -6,12 +6,12 @@ export default auth((req) => {
   const { pathname } = req.nextUrl;
 
   // Rediriger l'utilisateur connecté
-  if (isUserLoggedIn && pathname === "/signin") {
+  if (isUserLoggedIn && pathname.startsWith("/signin")) {
     return NextResponse.redirect(new URL("/dashboard", req.url)); // Redirige vers la page dashboard
   }
 
   // Rediriger l'utilisateur non connecté
-  if (!isUserLoggedIn) {
+  if (!isUserLoggedIn && pathname.startsWith("/dashboard")) {
     return NextResponse.redirect(new URL("/signin", req.url)); // Redirige vers la page de connexion
   }
 
@@ -19,5 +19,5 @@ export default auth((req) => {
 });
 
 export const config = {
-  matcher: ["/signin", "/dashboard/:function*"],
+  matcher: ["/signin/:function*", "/dashboard/:function*"],
 };

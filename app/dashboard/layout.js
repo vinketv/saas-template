@@ -1,5 +1,6 @@
 import { auth } from "@/auth.js";
 import { NavDashboard } from "@/components/NavDashboard/NavDashboard";
+import { SideBar } from "@/components/SideBar/index";
 import { DrawerProvider } from "@/components/SideBar/toggle";
 
 export const metadata = {
@@ -14,14 +15,15 @@ export default async function ProfileLayout({ admin, user }) {
     <>
       <div className="bg-slate-100 h-full">
         <DrawerProvider>
-          <NavDashboard role={role === "admin" ? "admin" : role}></NavDashboard>
-          <div className="p-4 sm:ml-64">
-            {/* <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14"> */}
-            <div className="p-4 rounded-lg dark:border-gray-700 mt-14">
-              {role === "admin" ? admin : user}
-            </div>
-          </div>
+          <NavDashboard></NavDashboard>
+          <SideBar role={role}></SideBar>
         </DrawerProvider>
+        <div className="p-4 sm:ml-64">
+          {/* <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14"> */}
+          <div className="p-4 rounded-lg dark:border-gray-700 mt-14">
+            {role === "admin" ? admin : user}
+          </div>
+        </div>
       </div>
     </>
   );

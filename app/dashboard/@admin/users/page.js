@@ -1,10 +1,8 @@
-import { Modal } from "@/components/Admin/modal";
 import Users from "@/components/Admin/users";
 
 export default async function Page() {
   return (
     <>
-      <Modal></Modal>
       <div className="relative overflow-x-auto shadow-md rounded-lg">
         <div className="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 px-4 bg-white dark:bg-gray-900">
           <label htmlFor="table-search" className="sr-only">

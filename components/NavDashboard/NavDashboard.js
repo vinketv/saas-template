@@ -1,9 +1,9 @@
-import ToggleButton, { SideBar } from "@/components/SideBar/index";
+import ToggleButton from "@/components/SideBar/index";
 import Image from "next/image";
 import Link from "next/link";
 import { Avatar } from "../Auth/Button";
 
-export const NavDashboard = ({ role }) => {
+export const NavDashboard = () => {
   // const spanPro = (
   //   <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">
   //     Pro
@@ -47,8 +47,6 @@ export const NavDashboard = ({ role }) => {
           </div>
         </div>
       </nav>
-
-      <SideBar role={role}></SideBar>
     </>
   );
 };

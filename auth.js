@@ -22,6 +22,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers,
   pages: {
     signIn: "/signin",
-    newUser: "/signin/plan",
   },
+  callbacks: {
+    async session({ session, token }) {
+      if (token.sub) {
+        session.user.id = token.sub;
+      }
+      return session;
+    },
+  },
+  session: { strategy: "jwt" },
+  secret: process.env.SECRET,
 });

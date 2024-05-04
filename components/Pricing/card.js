@@ -70,8 +70,8 @@ export const Cards = async () => {
   ];
   return (
     <>
-      <section className="bg-white dark:bg-gray-900">
-        <div className="py-4 px-4 mx-auto max-w-screen-xl">
+      <section className="bg-slate-100 h-full">
+        <div className="py-4 px-4 mx-auto h-full max-w-screen-xl">
           <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-black dark:text-white">
               Please select a plan

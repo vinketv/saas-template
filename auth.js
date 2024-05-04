@@ -24,13 +24,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signIn: "/signin",
   },
   callbacks: {
-    async session({ session, token }) {
-      if (token.sub) {
-        session.user.id = token.sub;
+    async signIn({ user, profile }) {
+      if (!user.username) {
+        // Générez un username basé sur les informations disponibles
+        // Par exemple, utilisez une partie de l'email ou un nom d'utilisateur généré aléatoirement
+        user.username =
+          profile.email.split("@")[0] + Math.floor(Math.random() * 1000);
       }
-      return session;
+      return true;
     },
   },
-  session: { strategy: "jwt" },
-  secret: process.env.SECRET,
 });

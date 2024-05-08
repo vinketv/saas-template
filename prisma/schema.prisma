@@ -21,14 +21,24 @@ model User {
   email         String?         @unique
   emailVerified DateTime?
   image         String?
-  role          String          @default("null")
+  role          String          @default("user")
   Session       Session[]
   Account       Account?
   // Optional for WebAuthn support
   Authenticator Authenticator[]
+
+  // payment
+  stripeCustomerId  String?
+  plan  UserPlan?
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+enum UserPlan {
+  FREE
+  STARTER
+  BUSINESS
 }
  
 model Account {

@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `User` ADD COLUMN `plan` ENUM('FREE', 'STARTER', 'BUSINESS') NOT NULL DEFAULT 'FREE',
+    ADD COLUMN `stripeCustomerId` VARCHAR(191) NULL;

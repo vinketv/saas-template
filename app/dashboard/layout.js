@@ -1,8 +1,8 @@
 import { auth } from "@/auth.js";
 import { NavDashboard } from "@/components/NavDashboard/NavDashboard";
+import { Cards } from "@/components/Pricing/card";
 import { SideBar } from "@/components/SideBar/index";
 import { DrawerProvider } from "@/components/SideBar/toggle";
-import SelectRole from "./SelectRole/selectRole";
 
 export const metadata = {
   title: "Dashboard",
@@ -12,10 +12,13 @@ export const metadata = {
 export default async function ProfileLayout({ admin, user }) {
   const session = await auth();
   const role = session.user.role;
+  const plan = session.user.plan;
+
+  console.log(plan);
 
   return (
     <>
-      {role === null ? (
+      {plan != null ? (
         <div className="bg-slate-100 h-full">
           <DrawerProvider>
             <NavDashboard></NavDashboard>
@@ -29,7 +32,7 @@ export default async function ProfileLayout({ admin, user }) {
           </div>
         </div>
       ) : (
-        <SelectRole></SelectRole>
+        <Cards></Cards>
       )}
     </>
   );

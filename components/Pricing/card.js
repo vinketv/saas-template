@@ -70,9 +70,9 @@ export const Cards = async () => {
   ];
   return (
     <>
-      <section className="bg-slate-100 h-full">
-        <div className="py-4 px-4 mx-auto h-full max-w-screen-xl">
-          <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
+      <section className="bg-slate-100 h-full overflow-auto">
+        <div className="flex flex-col py-4 px-4 mx-auto lg:h-full max-w-screen-xl lg:align-middle lg:justify-center bg-slate-100">
+          <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12 bg-slate-100">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-black dark:text-white">
               Please select a plan
             </h2>
@@ -81,7 +81,7 @@ export const Cards = async () => {
               and capital can unlock long-term value and drive economic growth.
             </p>
           </div>
-          <div className="space-y-8 lg:grid xl:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
+          <div className="space-y-8 sm:grid xl:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
             {/* <!-- Pricing Card --> */}
 
             {list.map((feature, id) => (

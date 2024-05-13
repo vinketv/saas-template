@@ -14,8 +14,6 @@ export default async function ProfileLayout({ admin, user }) {
   const role = session.user.role;
   const plan = session.user.plan;
 
-  console.log(plan);
-
   return (
     <>
       {plan != null ? (

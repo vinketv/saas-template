@@ -1,3 +1,9 @@
+import { auth } from "@/auth";
+import { prisma } from "@/lib/prisma";
+import { stripe } from "@/lib/stripe";
+import { redirect } from "next/navigation";
+import { Button } from "../ui/button";
+
 export const Cards = async () => {
   const list = [
     {
@@ -23,7 +29,7 @@ export const Cards = async () => {
       ],
     },
     {
-      name: "Company",
+      name: "Pro",
       description: "Relevant for multiple users, extended & premium support.",
       price: "$99",
       recurence: "month",
@@ -44,29 +50,6 @@ export const Cards = async () => {
         },
       ],
     },
-    {
-      name: "Enterprise",
-      description:
-        "Best for large scale uses and extended redistribution rights.",
-      price: "$499",
-      recurence: "month",
-      option: [
-        "Individual configuration",
-        "No setup, or hidden fees",
-        {
-          name: "Team size: ",
-          description: "100+ developer",
-        },
-        {
-          name: "Premium support: ",
-          description: "36 months",
-        },
-        {
-          name: "Free updates: ",
-          description: "36 months",
-        },
-      ],
-    },
   ];
   return (
     <>
@@ -81,7 +64,7 @@ export const Cards = async () => {
               and capital can unlock long-term value and drive economic growth.
             </p>
           </div>
-          <div className="space-y-8 sm:grid xl:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
+          <div className="space-y-8 sm:grid xl:grid-cols-2 sm:gap-6 xl:gap-10 lg:space-y-0">
             {/* <!-- Pricing Card --> */}
 
             {list.map((feature, id) => (
@@ -142,12 +125,50 @@ export const Cards = async () => {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href="#"
-                  className="text-white bg-primary hover:bg-primary/75 font-medium rounded-lg text-sm px-5 py-2.5 text-cente"
-                >
-                  Get started
-                </a>
+                <form>
+                  <Button
+                    className="bg-primary hover:bg-primary/75"
+                    formAction={async () => {
+                      "use server";
+                      const authSession = await auth();
+                      const user = await prisma.user.findUnique({
+                        where: {
+                          id: authSession?.user?.id ?? "",
+                        },
+                        select: {
+                          stripeCustomerId: true,
+                        },
+                      });
+
+                      const stripeCustomerId =
+                        user?.stripeCustomerId ?? undefined;
+
+                      const session = await stripe.checkout.sessions.create({
+                        customer: stripeCustomerId,
+                        mode: "subscription",
+                        payment_method_types: ["card", "link"],
+                        line_items: [
+                          {
+                            price:
+                              process.env.NODE_ENV === "development"
+                                ? "price_1PEfXADuKVm8plmgsD5bYeEf"
+                                : "",
+                            quantity: 1,
+                          },
+                        ],
+                        success_url: "http://localhost:3000/success",
+                        cancel_url: "http://localhost:3000/cancel",
+                      });
+
+                      if (!session.url) {
+                        throw new Error("url session missing!");
+                      }
+                      redirect(session.url);
+                    }}
+                  >
+                    Get started
+                  </Button>
+                </form>
               </div>
             ))}
           </div>

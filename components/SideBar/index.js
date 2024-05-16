@@ -5,11 +5,13 @@ import {
   LayoutDashboard,
   Mailbox,
   Menu,
+  Settings,
   ShoppingBasket,
   Tag,
   User,
 } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useDrawer } from "./toggle";
 
 export default function ToggleButton() {
@@ -31,6 +33,7 @@ export default function ToggleButton() {
 
 export function SideBar({ role }) {
   const { isDrawerOpen } = useDrawer();
+  const pathname = usePathname();
 
   let menuList = [
     {
@@ -40,18 +43,23 @@ export function SideBar({ role }) {
     },
     {
       name: "Analytics",
-      href: "/dashboard",
+      href: "#",
       icon: <BarChart3 />,
     },
     {
       name: "Inbox",
-      href: "/dashboard",
+      href: "#",
       icon: <Mailbox />,
     },
     {
       name: "Products",
-      href: "/dashboard",
+      href: "#",
       icon: <ShoppingBasket />,
+    },
+    {
+      name: "Settings",
+      href: "/dashboard/settings",
+      icon: <Settings />,
     },
   ];
 
@@ -87,7 +95,9 @@ export function SideBar({ role }) {
               <li key={id}>
                 <Link
                   href={feature.href}
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  className={`${
+                    pathname === feature.href ? "bg-gray-100" : ""
+                  } flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}
                 >
                   {feature.icon}
                   <span className="ms-3">{feature.name}</span>

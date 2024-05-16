@@ -50,6 +50,28 @@ export const Cards = async () => {
         },
       ],
     },
+    {
+      name: "Business",
+      description: "Best option for personal use & for your next project.",
+      price: "Contact us",
+      recurence: false,
+      option: [
+        "Individual configuration",
+        "No setup, or hidden fees",
+        {
+          name: "Team size: ",
+          description: "Unlimited",
+        },
+        {
+          name: "Premium support: ",
+          description: "Unlimited",
+        },
+        {
+          name: "Free updates: ",
+          description: "Unlimited",
+        },
+      ],
+    },
   ];
   return (
     <>
@@ -64,7 +86,7 @@ export const Cards = async () => {
               and capital can unlock long-term value and drive economic growth.
             </p>
           </div>
-          <div className="space-y-8 sm:grid xl:grid-cols-2 sm:gap-6 xl:gap-10 lg:space-y-0">
+          <div className="space-y-8 sm:grid xl:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
             {/* <!-- Pricing Card --> */}
 
             {list.map((feature, id) => (
@@ -125,50 +147,77 @@ export const Cards = async () => {
                     </li>
                   ))}
                 </ul>
-                <form>
-                  <Button
-                    className="bg-primary hover:bg-primary/75"
-                    formAction={async () => {
-                      "use server";
-                      const authSession = await auth();
-                      const user = await prisma.user.findUnique({
-                        where: {
-                          id: authSession?.user?.id ?? "",
-                        },
-                        select: {
-                          stripeCustomerId: true,
-                        },
-                      });
 
-                      const stripeCustomerId =
-                        user?.stripeCustomerId ?? undefined;
-
-                      const session = await stripe.checkout.sessions.create({
-                        customer: stripeCustomerId,
-                        mode: "subscription",
-                        payment_method_types: ["card", "link"],
-                        line_items: [
-                          {
-                            price:
-                              process.env.NODE_ENV === "development"
-                                ? "price_1PEfXADuKVm8plmgsD5bYeEf"
-                                : "",
-                            quantity: 1,
+                {feature.name === "Pro" ? (
+                  <form>
+                    <Button
+                      className="bg-primary hover:bg-primary/75"
+                      formAction={async () => {
+                        "use server";
+                        const authSession = await auth();
+                        const user = await prisma.user.findUnique({
+                          where: {
+                            id: authSession?.user?.id ?? "",
                           },
-                        ],
-                        success_url: "http://localhost:3000/success",
-                        cancel_url: "http://localhost:3000/cancel",
-                      });
+                          select: {
+                            stripeCustomerId: true,
+                          },
+                        });
 
-                      if (!session.url) {
-                        throw new Error("url session missing!");
-                      }
-                      redirect(session.url);
-                    }}
-                  >
-                    Get started
-                  </Button>
-                </form>
+                        const stripeCustomerId =
+                          user?.stripeCustomerId ?? undefined;
+
+                        const session = await stripe.checkout.sessions.create({
+                          customer: stripeCustomerId,
+                          mode: "subscription",
+                          payment_method_types: ["card", "link"],
+                          line_items: [
+                            {
+                              price:
+                                process.env.NODE_ENV === "development"
+                                  ? "price_1PEfXADuKVm8plmgsD5bYeEf"
+                                  : "",
+                              quantity: 1,
+                            },
+                          ],
+                          success_url: "http://localhost:3000/success",
+                          cancel_url: "http://localhost:3000/cancel",
+                        });
+
+                        if (!session.url) {
+                          throw new Error("url session missing!");
+                        }
+                        redirect(session.url);
+                      }}
+                    >
+                      Get started
+                    </Button>
+                  </form>
+                ) : null}
+
+                {feature.name === "Starter" ? (
+                  <form>
+                    <Button
+                      className="bg-primary hover:bg-primary/75"
+                      formAction={async () => {
+                        "use server";
+                        const authSession = await auth();
+                        const user = await prisma.user.update({
+                          where: {
+                            id: authSession?.user?.id ?? "",
+                          },
+                          data: {
+                            plan: "FREE",
+                          },
+                        });
+
+                        redirect("/dashboard");
+                      }}
+                    >
+                      Get started
+                    </Button>
+                  </form>
+                ) : null}
               </div>
             ))}
           </div>

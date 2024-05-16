@@ -14,8 +14,6 @@ export const POST = async (req) => {
         break;
       }
 
-      // console.log("add session");
-
       await prisma.user.update({
         where: {
           id: user.id,

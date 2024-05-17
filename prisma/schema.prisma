@@ -36,8 +36,8 @@ model User {
 }
 
 enum UserPlan {
-  FREE
   STARTER
+  PRO
   BUSINESS
 }
  

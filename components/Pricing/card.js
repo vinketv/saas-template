@@ -148,13 +148,17 @@ export const Cards = async () => {
                   ))}
                 </ul>
 
-                {feature.name === "Pro" ? (
+                {feature.name === "Starter" || feature.name === "Pro" ? (
                   <form>
                     <Button
                       className="bg-primary hover:bg-primary/75"
                       formAction={async () => {
                         "use server";
                         const authSession = await auth();
+                        const stripeProductKey =
+                          feature.name === "Starter"
+                            ? process.env.STRIPE_STARTER_PLAN
+                            : process.env.STRIPE_PRO_PLAN;
                         const user = await prisma.user.findUnique({
                           where: {
                             id: authSession?.user?.id ?? "",
@@ -175,7 +179,7 @@ export const Cards = async () => {
                             {
                               price:
                                 process.env.NODE_ENV === "development"
-                                  ? "price_1PEfXADuKVm8plmgsD5bYeEf"
+                                  ? stripeProductKey
                                   : "",
                               quantity: 1,
                             },
@@ -188,30 +192,6 @@ export const Cards = async () => {
                           throw new Error("url session missing!");
                         }
                         redirect(session.url);
-                      }}
-                    >
-                      Get started
-                    </Button>
-                  </form>
-                ) : null}
-
-                {feature.name === "Starter" ? (
-                  <form>
-                    <Button
-                      className="bg-primary hover:bg-primary/75"
-                      formAction={async () => {
-                        "use server";
-                        const authSession = await auth();
-                        const user = await prisma.user.update({
-                          where: {
-                            id: authSession?.user?.id ?? "",
-                          },
-                          data: {
-                            plan: "FREE",
-                          },
-                        });
-
-                        redirect("/dashboard");
                       }}
                     >
                       Get started

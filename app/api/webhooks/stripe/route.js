@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { getPlanFromPriceId, stripe } from "@/lib/stripe";
 import { NextResponse } from "next/server";
 
 export const POST = async (req) => {
@@ -14,15 +15,27 @@ export const POST = async (req) => {
         break;
       }
 
-      await prisma.user.update({
-        where: {
-          id: user.id,
-        },
-        data: {
-          plan: "STARTER",
-        },
-      });
-      break;
+      // Récupérer le plan choisi à partir de la session
+      const lineItems = await stripe.checkout.sessions.listLineItems(
+        session.id,
+        {
+          limit: 1,
+        }
+      );
+
+      if (lineItems.data.length > 0) {
+        const priceId = lineItems.data[0].price.id;
+        const plan = getPlanFromPriceId(priceId);
+
+        await prisma.user.update({
+          where: {
+            id: user.id,
+          },
+          data: {
+            plan: plan,
+          },
+        });
+      }
     }
     case "invoice.paid": {
       const invoice = body.data.object;
@@ -33,15 +46,56 @@ export const POST = async (req) => {
         break;
       }
 
+      // Récupérer le plan choisi à partir de l'abonnement
+      const subscription = await stripe.subscriptions.retrieve(
+        invoice.subscription
+      );
+      const priceId = subscription.items.data[0].price.id;
+      const plan = getPlanFromPriceId(priceId);
+
       await prisma.user.update({
         where: {
           id: user.id,
         },
         data: {
-          plan: "STARTER",
+          plan: plan,
         },
       });
       break;
+    }
+    case "customer.subscription.updated": {
+      const subscription = body.data.object;
+      const stripeCustomerId = subscription.customer;
+      const user = await findUserFromCustomerId(stripeCustomerId);
+
+      if (!user?.id) {
+        break;
+      }
+
+      // Récupérer le plan choisi à partir de la subscription
+      const subscriptionItems = await stripe.subscriptionItems.list({
+        subscription: subscription.id,
+        limit: 1,
+      });
+
+      console.log("Subscription Items:", subscriptionItems.data);
+
+      if (subscriptionItems.data.length > 0) {
+        const priceId = subscriptionItems.data[0].price.id;
+        console.log("Price ID:", priceId);
+        const plan = getPlanFromPriceId(priceId);
+        console.log("Plan:", plan);
+
+        await prisma.user.update({
+          where: {
+            id: user.id,
+          },
+          data: {
+            plan: plan,
+          },
+        });
+        console.log("User plan updated successfully");
+      }
     }
     case "invoice.payment_failed": {
       const invoice = body.data.object;
@@ -57,7 +111,7 @@ export const POST = async (req) => {
           id: user.id,
         },
         data: {
-          plan: "FREE",
+          plan: "STARTER",
         },
       });
       break;
@@ -76,7 +130,7 @@ export const POST = async (req) => {
           id: user.id,
         },
         data: {
-          plan: "FREE",
+          plan: "STARTER",
         },
       });
       break;

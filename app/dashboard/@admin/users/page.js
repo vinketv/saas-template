@@ -40,10 +40,13 @@ export default async function Page() {
               <th scope="col" className="px-6 py-3">
                 Name
               </th>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-6 py-3 hidden lg:table-cell">
+                Plan
+              </th>
+              <th scope="col" className="px-6 py-3 hidden lg:table-cell">
                 Role
               </th>
-              <th scope="col" className="px-6 py-3 hidden lg:block">
+              <th scope="col" className="px-6 py-3 hidden lg:table-cell">
                 Created
               </th>
               <th scope="col" className="px-6 py-3">

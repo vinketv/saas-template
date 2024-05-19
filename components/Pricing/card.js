@@ -170,23 +170,33 @@ export const Cards = async () => {
 
                         const stripeCustomerId =
                           user?.stripeCustomerId ?? undefined;
+                        console.log("Stripe Customer ID:", stripeCustomerId);
 
-                        const session = await stripe.checkout.sessions.create({
+                        const sessionConfig = {
                           customer: stripeCustomerId,
                           mode: "subscription",
-                          payment_method_types: ["card", "link"],
                           line_items: [
                             {
-                              price:
-                                process.env.NODE_ENV === "development"
-                                  ? stripeProductKey
-                                  : "",
+                              price: stripeProductKey,
                               quantity: 1,
                             },
                           ],
-                          success_url: "http://localhost:3000/success",
+                          success_url: "http://localhost:3000/dashboard",
                           cancel_url: "http://localhost:3000/cancel",
-                        });
+                        };
+
+                        // Si ce n'est pas un plan gratuit, ajoutez payment_method_types
+                        if (feature.name !== "Starter") {
+                          sessionConfig.payment_method_types = ["card", "link"];
+                        } else {
+                          sessionConfig.payment_method_collection =
+                            "if_required";
+                        }
+                        console.log("Session Config:", sessionConfig); // Log supplémentaire
+
+                        const session = await stripe.checkout.sessions.create(
+                          sessionConfig
+                        );
 
                         if (!session.url) {
                           throw new Error("url session missing!");

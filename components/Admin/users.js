@@ -12,7 +12,7 @@ export default async function User() {
         >
           <th
             scope="row"
-            className="sm:flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
+            className="sm:flex lg:items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
           >
             <img
               className="w-10 h-10 sm:block hidden rounded-full"
@@ -20,13 +20,18 @@ export default async function User() {
               alt="Jese image"
             />
             <div className="ps-3">
-              <div className="text-base font-semibold">{item.username}</div>
+              <div className="text-s lg:text-base font-semibold">
+                {item.username}
+              </div>
               <div className="hidden sm:block font-normal text-gray-500">
                 {item.email}
               </div>
             </div>
           </th>
-          <td className="px-6 py-4">
+          <td className="hidden lg:table-cell px-6 py-4">
+            <div className="flex items-center">{item.plan}</div>
+          </td>
+          <td className="hidden lg:table-cell px-6 py-4">
             <div className="flex items-center">
               {item.role === "banned" ? (
                 <div className="h-2.5 w-2.5 rounded-full bg-red-500 me-2"></div>

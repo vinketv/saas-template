@@ -78,13 +78,9 @@ export const POST = async (req) => {
         limit: 1,
       });
 
-      console.log("Subscription Items:", subscriptionItems.data);
-
       if (subscriptionItems.data.length > 0) {
         const priceId = subscriptionItems.data[0].price.id;
-        console.log("Price ID:", priceId);
         const plan = getPlanFromPriceId(priceId);
-        console.log("Plan:", plan);
 
         await prisma.user.update({
           where: {
@@ -94,7 +90,6 @@ export const POST = async (req) => {
             plan: plan,
           },
         });
-        console.log("User plan updated successfully");
       }
     }
     case "invoice.payment_failed": {

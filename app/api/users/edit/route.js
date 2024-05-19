@@ -33,6 +33,17 @@ export async function POST(request) {
       );
     }
 
+    // Refuse special characters (only allow alphanumeric and underscores)
+    const usernameRegex = /^[a-zA-Z0-9_]+$/;
+    if (!usernameRegex.test(newUsername)) {
+      return new Response(
+        "Update user error: username can only contain letters, numbers, and underscores",
+        {
+          status: 400,
+        }
+      );
+    }
+
     // Vérifiez si le nom d'utilisateur est disponible
     const checkAvailable = await prisma.user.findFirst({
       where: { username: newUsername },

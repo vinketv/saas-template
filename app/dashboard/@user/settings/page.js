@@ -1,13 +1,17 @@
 import { auth } from "@/auth";
 import { Button_Manage } from "@/components/Button/Button";
+import { ToggleButton } from "@/components/Button/ButtonEdit";
 
 export default async function Page() {
   const session = await auth();
 
   return (
     <>
-      <div className="mb-8">
-        <h2 className="text-3xl font-bold">Settings</h2>
+      <div className="grid grid-cols-1 mb-8">
+        <div className="flex flex-row items-center justify-between gap-4">
+          <h2 className="text-3xl font-bold">Settings</h2>
+          <ToggleButton user={session.user} />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">

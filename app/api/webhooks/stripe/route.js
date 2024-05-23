@@ -27,7 +27,7 @@ export const POST = async (req) => {
         const priceId = lineItems.data[0].price.id;
         const plan = getPlanFromPriceId(priceId);
 
-        await prisma.user.update({
+        const test = await prisma.user.update({
           where: {
             id: user.id,
           },

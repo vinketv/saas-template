@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE `User` MODIFY `role` VARCHAR(191) NOT NULL DEFAULT 'user',
-    MODIFY `plan` ENUM('FREE', 'STARTER', 'BUSINESS') NULL;

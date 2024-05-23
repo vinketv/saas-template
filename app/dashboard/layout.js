@@ -3,6 +3,7 @@ import { NavDashboard } from "@/components/NavDashboard/NavDashboard";
 import { Cards } from "@/components/Pricing/card";
 import { SideBar } from "@/components/SideBar/index";
 import { DrawerProvider } from "@/components/SideBar/toggle";
+import { prisma } from "@/lib/prisma";
 
 export const metadata = {
   title: "Dashboard",
@@ -11,21 +12,28 @@ export const metadata = {
 
 export default async function ProfileLayout({ admin, user }) {
   const session = await auth();
-  const role = session.user.role;
-  const plan = session.user.plan;
+  const data = await prisma.user.findUnique({
+    where: {
+      id: session.user.id,
+    },
+    select: {
+      plan: true,
+      role: true,
+    },
+  });
 
   return (
     <>
-      {plan != null ? (
+      {data.plan != null ? (
         <div className="flex flex-col min-h-screen bg-slate-100">
           <DrawerProvider>
             <NavDashboard></NavDashboard>
-            <SideBar role={role}></SideBar>
+            <SideBar role={data.role}></SideBar>
           </DrawerProvider>
           <div className=" flex-grow p-4 sm:ml-64">
             {/* <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14"> */}
             <div className="p-2 sm:p-4 rounded-lg dark:border-gray-700 mt-14">
-              {role === "admin" ? admin : user}
+              {data.role === "admin" ? admin : user}
             </div>
           </div>
         </div>

@@ -1,23 +1,12 @@
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth from "next-auth";
-import Google from "next-auth/providers/google";
+import authConfig from "./auth.config";
 import { prisma } from "./lib/prisma";
 import { stripe } from "./lib/stripe";
 
-const providers = [Google];
-
-export const providerMap = providers.map((provider) => {
-  if (typeof provider === "function") {
-    const providerData = provider();
-    return { id: providerData.id, name: providerData.name };
-  } else {
-    return { id: provider.id, name: provider.name };
-  }
-});
-
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
-  providers,
+  session: { strategy: "jwt" },
   pages: {
     signIn: "/signin",
   },
@@ -55,5 +44,24 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return true;
     },
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        const dbUser = await prisma.user.findUnique({
+          where: { id: user.id },
+          select: { plan: true, role: true },
+        });
+        token.plan = dbUser?.plan;
+        token.role = dbUser?.role;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.user.id = token.id;
+      session.user.plan = token.plan;
+      session.user.role = token.role;
+      return session;
+    },
   },
+  ...authConfig,
 });

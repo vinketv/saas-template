@@ -35,7 +35,7 @@ export const NavDashboard = () => {
                   alt="logo"
                 ></Image>
                 <p className="hidden sm:block font-medium ml-1 text-black ">
-                  Template
+                  {process.env.NAME}
                 </p>
               </Link>
             </div>

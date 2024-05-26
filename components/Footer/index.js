@@ -75,7 +75,7 @@ export const Footer = () => {
         </div>
         <div className="border border-slate-500 w-1/2 m-auto" />
         <div className="mt-10 text-center">
-          <p className="text-slate-500">© Template 2024.</p>
+          <p className="text-slate-500">© {process.env.NAME} 2024.</p>
           <p className="text-slate-500">
             A project by{" "}
             <Link

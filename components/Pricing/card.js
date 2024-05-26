@@ -170,7 +170,6 @@ export const Cards = async () => {
 
                         const stripeCustomerId =
                           user?.stripeCustomerId ?? undefined;
-                        console.log("Stripe Customer ID:", stripeCustomerId);
 
                         const sessionConfig = {
                           customer: stripeCustomerId,
@@ -195,7 +194,6 @@ export const Cards = async () => {
                           sessionConfig.payment_method_collection =
                             "if_required";
                         }
-                        console.log("Session Config:", sessionConfig); // Log supplémentaire
 
                         const session = await stripe.checkout.sessions.create(
                           sessionConfig

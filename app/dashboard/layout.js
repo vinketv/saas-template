@@ -22,9 +22,40 @@ export default async function ProfileLayout({ admin, user }) {
     },
   });
 
+  if (process.env.SUBCRIPTION != "true") {
+    try {
+      await prisma.user.update({
+        where: {
+          id: session.user.id,
+        },
+        data: {
+          plan: "STARTER",
+        },
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
   return (
     <>
-      {data.plan != null ? (
+      {process.env.SUBCRIPTION === "true" ? (
+        data.plan != null ? (
+          <div className="flex flex-col min-h-screen bg-slate-100">
+            <DrawerProvider>
+              <NavDashboard></NavDashboard>
+              <SideBar role={data.role}></SideBar>
+            </DrawerProvider>
+            <div className=" flex-grow p-4 sm:ml-64">
+              {/* <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14"> */}
+              <div className="p-2 sm:p-4 rounded-lg dark:border-gray-700 mt-14">
+                {data.role === "admin" ? admin : user}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <Cards></Cards>
+        )
+      ) : (
         <div className="flex flex-col min-h-screen bg-slate-100">
           <DrawerProvider>
             <NavDashboard></NavDashboard>
@@ -37,8 +68,6 @@ export default async function ProfileLayout({ admin, user }) {
             </div>
           </div>
         </div>
-      ) : (
-        <Cards></Cards>
       )}
     </>
   );

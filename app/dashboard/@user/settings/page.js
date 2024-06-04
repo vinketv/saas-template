@@ -48,7 +48,7 @@ export default async function Page() {
               <p className="text-sm text-slate-400">Plan</p>
             </div>
             <div>
-              <Button_Manage />
+              {process.env.SUBCRIPTION != "true" ? null : <Button_Manage />}
             </div>
           </div>
         </div>

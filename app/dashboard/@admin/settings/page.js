@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { Button_Manage } from "@/components/Button/Button";
+import { Button_Manage } from "@/components/Dashboard/Settings/ButtonManagePlan";
 
 export default async function Page() {
   const session = await auth();

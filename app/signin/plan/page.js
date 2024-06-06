@@ -1,4 +1,4 @@
-import { Cards } from "@/components/Pricing/card";
+import { Cards } from "@/components/Front/Pricing/card";
 
 export default async function Page() {
   return (

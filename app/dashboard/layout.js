@@ -1,8 +1,8 @@
 import { auth } from "@/auth.js";
-import { NavDashboard } from "@/components/NavDashboard/NavDashboard";
-import { Cards } from "@/components/Pricing/card";
-import { SideBar } from "@/components/SideBar/index";
-import { DrawerProvider } from "@/components/SideBar/toggle";
+import { NavDashboard } from "@/components/Dashboard/NavDashboard/NavDashboard";
+import { SideBar } from "@/components/Dashboard/SideBar/index";
+import { DrawerProvider } from "@/components/Dashboard/SideBar/toggle";
+import { Cards } from "@/components/Front/Pricing/card";
 import { prisma } from "@/lib/prisma";
 
 export const metadata = {

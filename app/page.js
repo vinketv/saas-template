@@ -1,6 +1,6 @@
-import { Footer } from "@/components/Footer";
-import { Navbar } from "@/components/Navbar";
-import { Princing } from "@/components/Pricing";
+import { Footer } from "@/components/Front/Footer";
+import { Navbar } from "@/components/Front/Navbar";
+import { Princing } from "@/components/Front/Pricing";
 import { FaCloudUploadAlt, FaDatabase, FaLock } from "react-icons/fa";
 
 export default function Page() {
@@ -127,7 +127,7 @@ export default function Page() {
           </dl>
         </div>
       </div>
-      <Princing></Princing>
+      {process.env.SUBCRIPTION == "true" ? <Princing></Princing> : null}
       <Footer></Footer>
     </>
   );

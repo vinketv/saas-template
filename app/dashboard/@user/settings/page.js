@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
-import { Button_Manage } from "@/components/Button/Button";
-import { ToggleButton } from "@/components/Button/ButtonEdit";
+import { ToggleButton } from "@/components/Dashboard/Settings/ButtonEditUsername";
+import { Button_Manage } from "@/components/Dashboard/Settings/ButtonManagePlan";
 import { prisma } from "@/lib/prisma";
 
 export default async function Page() {

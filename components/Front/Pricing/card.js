@@ -1,8 +1,8 @@
 import { auth } from "@/auth";
+import { Button } from "@/components/ui/button";
 import { prisma } from "@/lib/prisma";
 import { stripe } from "@/lib/stripe";
 import { redirect } from "next/navigation";
-import { Button } from "../ui/button";
 
 export const Cards = async () => {
   const list = [

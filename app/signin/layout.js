@@ -9,9 +9,10 @@ export default function RootLayout({ children }) {
 
   useEffect(() => {
     const betaPassword = Cookies.get("betaPassword");
+    console.log(process.env.NEXT_PUBLIC_BETA_PASSWORD);
     if (
       process.env.NEXT_PUBLIC_BETA_MODE === "true" &&
-      betaPassword === process.env.BETA_PASSWORD
+      betaPassword === process.env.NEXT_PUBLIC_BETA_PASSWORD
     ) {
       setIsBetaAuthorized(true);
     }

@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `User` MODIFY `plan` ENUM('BETA', 'STARTER', 'PRO', 'BUSINESS') NULL;

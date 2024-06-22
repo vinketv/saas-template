@@ -27,7 +27,9 @@ export const POST = async (req) => {
         const priceId = lineItems.data[0].price.id;
         const plan = getPlanFromPriceId(priceId);
 
-        const test = await prisma.user.update({
+        console.log(plan);
+
+        await prisma.user.update({
           where: {
             id: user.id,
           },
@@ -52,6 +54,8 @@ export const POST = async (req) => {
       );
       const priceId = subscription.items.data[0].price.id;
       const plan = getPlanFromPriceId(priceId);
+
+      console.log(plan);
 
       await prisma.user.update({
         where: {
@@ -81,6 +85,8 @@ export const POST = async (req) => {
       if (subscriptionItems.data.length > 0) {
         const priceId = subscriptionItems.data[0].price.id;
         const plan = getPlanFromPriceId(priceId);
+
+        console.log(plan);
 
         await prisma.user.update({
           where: {

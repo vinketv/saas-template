@@ -4,24 +4,33 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Cookies from "js-cookie";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export function BetaForm({ setAuthorize }) {
+export function BetaForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password === process.env.NEXT_PUBLIC_BETA_PASSWORD) {
+
+    const res = await fetch("/api/verify-beta-password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        password: password,
+      }),
+    });
+
+    if (res.status === 200) {
       Cookies.set("betaPassword", password, { expires: 365 * 100 });
-      setAuthorize(true);
-      router.refresh();
+      window.location.reload();
     } else {
       setError("Mot de passe incorrect");
     }
   };
+
   return (
     <div>
       <div className="h-screen w-screen flex justify-center items-center bg-slate-100">

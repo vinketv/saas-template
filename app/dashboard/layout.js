@@ -22,24 +22,46 @@ export default async function ProfileLayout({ children }) {
     },
   });
 
-  if (process.env.SUBCRIPTION != "true") {
+  if (
+    data.plan != "BETA" &&
+    process.env.SUBCRIPTION === "false" &&
+    process.env.NEXT_PUBLIC_BETA_MODE === "true"
+  ) {
     try {
       await prisma.user.update({
         where: {
           id: session.user.id,
         },
         data: {
-          plan: "STARTER",
+          plan: "BETA",
+        },
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  } else if (
+    data.plan === "BETA" &&
+    process.env.SUBCRIPTION === "true" &&
+    process.env.NEXT_PUBLIC_BETA_MODE === "false"
+  ) {
+    try {
+      await prisma.user.update({
+        where: {
+          id: session.user.id,
+        },
+        data: {
+          plan: null,
         },
       });
     } catch (error) {
       throw new Error(error);
     }
   }
+
   return (
     <>
       {process.env.SUBCRIPTION === "true" ? (
-        data.plan != null ? (
+        data.plan != null && data.plan != "BETA" ? (
           <div className="flex flex-col min-h-screen bg-slate-100">
             <DrawerProvider>
               <NavDashboard></NavDashboard>

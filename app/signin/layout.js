@@ -1,25 +1,17 @@
-"use client";
-
 import { BetaForm } from "@/components/Beta/BetaForm";
-import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
+import { cookies } from "next/headers";
 
 export default function RootLayout({ children }) {
-  const [isBetaAuthorized, setIsBetaAuthorized] = useState(false);
+  const cookieStore = cookies();
+  const betaPasswordCookie = cookieStore.get("betaPassword");
+  const betaPassword = betaPasswordCookie ? betaPasswordCookie.value : null;
 
-  useEffect(() => {
-    const betaPassword = Cookies.get("betaPassword");
-    console.log(process.env.NEXT_PUBLIC_BETA_PASSWORD);
-    if (
-      process.env.NEXT_PUBLIC_BETA_MODE === "true" &&
-      betaPassword === process.env.NEXT_PUBLIC_BETA_PASSWORD
-    ) {
-      setIsBetaAuthorized(true);
-    }
-  }, []);
-
-  if (process.env.NEXT_PUBLIC_BETA_MODE === "true" && !isBetaAuthorized) {
-    return <BetaForm setAuthorize={setIsBetaAuthorized} />;
+  if (
+    process.env.NEXT_PUBLIC_BETA_MODE === "true" &&
+    betaPassword !== process.env.BETA_PASSWORD
+  ) {
+    console.log("test");
+    return <BetaForm />;
   }
 
   return <>{children}</>;

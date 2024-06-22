@@ -183,8 +183,8 @@ export const Cards = async () => {
                           subscription_data: {
                             trial_period_days: 7,
                           },
-                          success_url: "http://localhost:3000/dashboard",
-                          cancel_url: "http://localhost:3000/cancel",
+                          success_url: `${process.env.URL}/dashboard`,
+                          cancel_url: `${process.env.URL}/cancel`,
                         };
 
                         // Si ce n'est pas un plan gratuit, ajoutez payment_method_types

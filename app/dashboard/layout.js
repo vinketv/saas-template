@@ -64,25 +64,6 @@ export default async function ProfileLayout({ children }) {
     }
   }
 
-  // if (
-  //   data.plan === "BETA" &&
-  //   process.env.SUBCRIPTION === "true" &&
-  //   process.env.NEXT_PUBLIC_BETA_MODE === "false"
-  // ) {
-  //   try {
-  //     await prisma.user.update({
-  //       where: {
-  //         id: session.user.id,
-  //       },
-  //       data: {
-  //         plan: null,
-  //       },
-  //     });
-  //   } catch (error) {
-  //     throw new Error(error);
-  //   }
-  // }
-
   return (
     <>
       {process.env.SUBCRIPTION === "true" ? (

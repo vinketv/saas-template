@@ -55,12 +55,6 @@ export default async function SignInPage() {
             <div></div>
           </button>
         </form>
-        {/* <p className="text-center text-xs text-slate-500">
-          Don’t have an account yet?{" "}
-          <Link className="text-primary hover:underline" href="/register">
-            Sign up here
-          </Link>{" "}
-        </p> */}
       </div>
     </div>
   );

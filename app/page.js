@@ -127,7 +127,7 @@ export default function Page() {
           </dl>
         </div>
       </div>
-      {process.env.SUBCRIPTION == "true" ? <Princing></Princing> : null}
+      <Princing></Princing>
       <Footer></Footer>
     </>
   );

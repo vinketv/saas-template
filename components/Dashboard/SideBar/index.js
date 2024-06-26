@@ -69,12 +69,12 @@ export function SideBar({ role }) {
       ...menuList,
       {
         name: "Users",
-        href: "/dashboard/users",
+        href: "/dashboard/admin/users",
         icon: <User />,
       },
       {
         name: "Tickets",
-        href: "/dashboard/tickets",
+        href: "/dashboard/admin/tickets",
         icon: <Tag />,
       },
     ];
@@ -99,7 +99,7 @@ export function SideBar({ role }) {
                     (pathname.startsWith(feature.href) &&
                       feature.href !== "/dashboard") ||
                     pathname === feature.href
-                      ? "bg-gray-100"
+                      ? "bg-gray-200"
                       : ""
                   } flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}
                 >

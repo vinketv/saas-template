@@ -1,4 +1,4 @@
-import { ToggleButton } from "@/components/Admin/toggle";
+import { ToggleButton } from "@/components/Dashboard/Admin/toggle";
 import { prisma } from "@/lib/prisma";
 
 export default async function User() {

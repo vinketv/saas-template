@@ -33,7 +33,7 @@ export default async function ProfileLayout({ children }) {
     },
   });
 
-  if (process.env.NEXT_PUBLIC_BETA_MODE === "true" && data.plan === "BETA") {
+  if (process.env.NEXT_PUBLIC_BETA_MODE === "true" && data?.plan === "BETA") {
     return (
       <>
         <div className="flex flex-col min-h-screen bg-slate-100">
@@ -52,7 +52,7 @@ export default async function ProfileLayout({ children }) {
     );
   } else if (
     process.env.NEXT_PUBLIC_BETA_MODE === "true" &&
-    data.plan != "BETA"
+    data?.plan != "BETA"
   ) {
     if (
       countBetaMember >= process.env.BETA_MEMBER_MAX &&
@@ -67,7 +67,7 @@ export default async function ProfileLayout({ children }) {
   return (
     <>
       {process.env.SUBCRIPTION === "true" ? (
-        data.plan != null && data.plan != "BETA" ? (
+        data?.plan != null && data?.plan != "BETA" ? (
           <div className="flex flex-col min-h-screen bg-slate-100">
             <DrawerProvider>
               <NavDashboard></NavDashboard>
